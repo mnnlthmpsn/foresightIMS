@@ -14,8 +14,8 @@
         "dist:mac": "npm run react:build && electron-builder --mac"
     },
     "build": {
-        "appId": "wilianzilv.reactron",
-        "productName": "reactron",
+        "appId": "",
+        "productName": "demo",
         "files": [
             "build/**/*",
             "node_modules/**/*",
@@ -48,12 +48,13 @@
         }
     },
     "dependencies": {
+        "bootstrap": "^4.5.0",
         "electron-is-dev": "^1.2.0"
     },
     "devDependencies": {
         "concurrently": "^5.1.0",
-        "electron": "^8.2.3",
-        "electron-builder": "^22.5.1",
+        "electron": "^9.0.2",
+        "electron-builder": "^22.7.0",
         "electron-devtools-installer": "^3.0.0",
         "nodemon": "^2.0.3",
         "react": "^16.13.1",
