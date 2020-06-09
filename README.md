@@ -1,16 +1,12 @@
-<p align="center">
-  <img src="resources/media/logo_title.png" height="175" width="175" alt="Unform" />
-</p>
-
 <h3 align="center">
-  Yet another Electron + React boilerplate. 
+  Inventory Management system with Electron 
 </h3>
 
 <br>
 
 ## Overview
 
-Reactron is a tiny Electron project configured to work with React as frontend. The project has just the necessary to start a new app.
+Simple app for shop management
 
 ## Getting Started
 
@@ -24,11 +20,7 @@ Developing
 
 ## Important
 
-The backend and frontend code must be separated.
-
-<code>public</code> folder for the backend.
-
-<code>src</code> folder for the frontend.
+Don't forget to <code>\$ npm install</code>
 
 ## Generating the bundle
 
@@ -46,4 +38,4 @@ Mac
 
 ## License
 
-[MIT](https://github.com/WilianZilv/reactron/blob/master/LICENSE)
+[MIT]
