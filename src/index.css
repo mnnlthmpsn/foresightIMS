@@ -1,3 +1,5 @@
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +7,49 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(31, 31, 31) !important;
+  -webkit-app-region: no-drag !important;
+  color: white !important;
+  border: 2px solid rgb(199, 125, 15);
+  padding-bottom: 10%;
+  border-radius: 5px;
+}
+
+input,
+select {
+  background-color: rgb(53, 51, 51) !important;
+  color: white !important;
+}
+
+.form-control {
+  border-color: rgb(199, 125, 15) !important;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(53, 51, 51) !important;
+}
+
+.form-control:focus {
+  border-color: rgb(199, 125, 15) !important;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(53, 51, 51) !important;
+}
+
+input[type='submit'],
+input[type='reset'],
+input[type='button'],
+input[type='text'],
+button,
+textarea,
+select {
+  -webkit-app-region: no-drag;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+a,
+p {
+  -webkit-user-select: none;
+  -webkit-app-region: no-drag;
 }
 
 code {
@@ -12,8 +57,157 @@ code {
     monospace;
 }
 
-.container {
-  width: 80%;
-  margin: auto;
+a {
+  text-decoration: none !important;
+}
+
+label {
+  color: rgb(199, 125, 15) !important;
+}
+
+/* title bar */
+.titleBar {
+  display: flex !important;
+  padding-top: 15px;
+  -webkit-app-region: drag !important;
+
+}
+
+.brand {
+  flex: 5;
+  color: rgb(199, 125, 15);
   text-align: center;
 }
+
+.controls {
+  flex: 1;
+  margin-right: 30px;
+}
+
+.controls a :hover {
+  color: rgb(199, 125, 15)
+}
+
+.sideNav {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.sideNav a {
+  color: rgb(199, 125, 15) !important;
+}
+
+.app {
+  display: flex;
+  flex-direction: row;
+}
+
+.side {
+  flex: 1;
+}
+
+.main {
+  flex: 3;
+  padding-left: 50px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 0px;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
+}
+
+.option:hover {
+  background-color: rgb(199, 125, 15) !important; 
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  margin-top: 20px;
+}
+
+th {
+  color: rgb(199, 125, 15) !important;
+}
+
+td {
+  color: white !important;
+}
+
+.sellOrUpdate {
+  display: flex;
+  align-content: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.item {
+  border: 1px solid rgb(199, 125, 15);
+  border-radius: 5px;
+  width: 40%;
+  padding: 10%;
+  background-color: rgb(199, 125, 15);
+  text-align: center;
+  margin-top: 4%
+}
+
+.item:hover {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.table-fixed tbody {
+  height: 300px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tr,
+.table-fixed td,
+.table-fixed th {
+  display: block;
+}
+
+.table-fixed tbody td,
+.table-fixed tbody th,
+.table-fixed thead > tr > th {
+  float: left;
+  position: relative;
+}
+  ::after {
+      content: '';
+      clear: both;
+      display: block;
+  }

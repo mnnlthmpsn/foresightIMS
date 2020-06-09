@@ -1,49 +1,93 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain } = require('electron')
+const db = require('./db')
 
-const path = require("path");
-const isDev = require("electron-is-dev");
+const path = require('path')
+const isDev = require('electron-is-dev')
 
-let mainWindow;
+let mainWindow
 
-async function createWindow() {
-    if (isDev) {
-        try {
-            const {
-                default: installExtension,
-                REACT_DEVELOPER_TOOLS,
-            } = require("electron-devtools-installer");
-            const name = await installExtension(REACT_DEVELOPER_TOOLS, true);
-            console.log(name, "was installed");
-        } catch (error) {}
+const createWindow = () => {
+  mainWindow = new BrowserWindow({
+    width: 1050,
+    height: 625,
+    minWidth: 1050,
+    maxWidth: 1050,
+    minHeight: 625,
+    maxHeight: 625,
+    maximizable: false,
+    show: false,
+    backgroundColor: '#1e1e1e',
+    frame: false,
+    webPreferences: {
+      nodeIntegration: true
     }
-    mainWindow = new BrowserWindow({
-        width: 1050,
-        height: 625,
-        show: false,
-        icon: path.join(
-            isDev ? process.cwd() + "/resources" : process.resourcesPath,
-            "media",
-            "icon.ico"
-        ),
-    });
-    mainWindow.on("ready-to-show", async () => {
-        mainWindow.show();
-        if (isDev) mainWindow.webContents.openDevTools({ mode: "undocked" });
-    });
-    mainWindow.on("closed", () => (mainWindow = null));
-    mainWindow.loadURL(
-        isDev
-            ? "http://localhost:3000"
-            : `file://${path.join(__dirname, "../build/index.html")}`
-    );
+  })
+  mainWindow.on('closed', () => (mainWindow = null))
+  mainWindow.on('ready-to-show', () => {
+    mainWindow.show()
+  })
+  mainWindow.loadURL(
+    isDev
+      ? 'http://localhost:3000'
+      : `file://${path.join(__dirname, '../build/index.html')}`
+  )
 }
 
-app.on("ready", createWindow);
+app.on('ready', createWindow)
 
-app.on("activate", () => {
-    if (mainWindow === null) createWindow();
-});
+app.on('activate', () => {
+  if (mainWindow === null) createWindow()
+})
 
-app.on("window-all-closed", () => {
-    if (process.platform !== "darwin") app.quit();
-});
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') app.quit()
+})
+
+// comm center
+
+ipcMain.on('action', (e, action) => {
+  if (action == 'minimize') {
+    mainWindow.minimize()
+  } else if (action == 'maximize') {
+    mainWindow.maximize()
+  } else if (action == 'clearAll') {
+    db.remove({}, { multi: true }, err => console.log(err))
+  } else {
+    mainWindow.close()
+  }
+})
+
+ipcMain.on('create:item', (e, item) => {
+  db.insert(item, (err, item) => {
+    err ? console.log(err) : e.reply('create:success', item)
+  })
+})
+
+ipcMain.on('get:items', e => {
+  db.find({}, (err, items) => {
+    err ? console.log(err) : e.reply('get:success', items)
+  })
+})
+
+ipcMain.on('getOne:item', (e, item) => {
+  db.find({ name: item }, (err, item) => {
+    err ? console.log(err) : e.reply('getOne:itemSuccess', item)
+  })
+})
+
+ipcMain.on('update:item', (e, item) => {
+  db.update(
+    { name: item.oldName },
+    { $set: { name: item.name, price: item.price, quantity: item.quantity } },
+    { multi: true },
+    (err, res) => {
+      err ? console.log(err) : console.log(res)
+    }
+  )
+})
+
+ipcMain.on('delete:item', (e, name) =>{
+  db.remove({ name: name }, {}, function (err, res) {
+    err ? console.log(err) : console.log(res)
+  });
+} )
