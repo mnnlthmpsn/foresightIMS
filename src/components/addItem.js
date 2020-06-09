@@ -8,8 +8,8 @@ const AddItem = () => {
   const { addItem } = useContext(ItemContext)
 
   const [name, setName] = useState('')
-  const [price, setPrice] = useState('')
-  const [quantity, setQuantity] = useState('')
+  const [price, setPrice] = useState(0)
+  const [quantity, setQuantity] = useState(0)
   const [stateChanged, setStateChanged] = useState(false)
 
   const add = e => {
@@ -33,6 +33,7 @@ const AddItem = () => {
             className='form-control'
             placeholder='Item Name'
             onChange={e => setName(e.target.value)}
+            autoFocus
           />
         </div>
         <div className='form-group'>
