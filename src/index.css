@@ -10,9 +10,6 @@ body {
   background-color: rgb(31, 31, 31) !important;
   -webkit-app-region: no-drag !important;
   color: white !important;
-  border: 2px solid rgb(199, 125, 15);
-  padding-bottom: 10%;
-  border-radius: 5px;
 }
 
 input,
