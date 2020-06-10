@@ -23,7 +23,7 @@ const AddItem = () => {
   return (
     <div>
       <h4 className='text-center mb-3' style={{ color: 'rgb(199, 125, 15)' }}>
-        Add Item
+        Add Item (remove this after)
       </h4>
       <form onSubmit={add}>
         <div className='form-group'>
