@@ -2,8 +2,8 @@
   "name": "foresight",
   "version": "1.0.0",
   "homepage": "./",
+  "author": { "name": "Emmanuel Kwadwo Ntiamoah Thompson"},
   "main": "public/electron.js",
-  "private": true,
   "scripts": {
     "start": "concurrently npm:*:dev",
     "electron:dev": "nodemon --exec \"electron . --debug\"",
