@@ -10,7 +10,8 @@
     "electron:dev": "nodemon --exec \"electron . --debug\"",
     "react:dev": "react-scripts start",
     "react:build": "react-scripts build",
-    "deploy": "npm run react:build && electron-builder --win --publish always"
+    "build": "electron-builder build --win --publish never",
+    "deploy": "electron-builder build --win --publish always"
   },
   "build": {
     "appId": "com.electron.foresight",
