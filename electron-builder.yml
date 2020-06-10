@@ -1,0 +1,4 @@
+appId: com.example.ForeSightIMS
+publish:
+  provider: github
+  token: e9490fb6b2ab3137f91b03bd5d8426d8cf266182

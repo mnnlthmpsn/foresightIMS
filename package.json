@@ -1,79 +1,72 @@
 {
-    "name": "foresight",
-    "version": "0.1.0",
-    "homepage": "./",
-    "main": "public/electron.js",
-    "private": true,
-    "scripts": {
-        "start": "concurrently npm:*:dev",
-        "electron:dev": "nodemon --exec \"electron . --debug\"",
-        "react:dev": "react-scripts start",
-        "react:build": "react-scripts build",
-        "dist:win": "npm run react:build && electron-builder --win",
-        "dist:linux": "npm run react:build && electron-builder --linux",
-        "dist:mac": "npm run react:build && electron-builder --mac"
+  "name": "foresight",
+  "version": "0.1.0",
+  "homepage": "./",
+  "main": "public/electron.js",
+  "private": true,
+  "scripts": {
+    "start": "concurrently npm:*:dev",
+    "electron:dev": "nodemon --exec \"electron . --debug\"",
+    "react:dev": "react-scripts start",
+    "react:build": "react-scripts build",
+    "build": "electron-builder build --win --publish never",
+    "deploy": "electron-builder build --win --publish always"
+  },
+  "build": {
+    "appId": "",
+    "productName": "ForeSight IMS",
+    "files": ["build/**/*", "node_modules/**/*", "backend/**", "src/**/**"],
+    "extraResources": [
+      {
+        "from": "./resources/",
+        "to": "./"
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "resources/media/icon.ico"
     },
-    "build": {
-        "appId": "",
-        "productName": "ForeSight IMS",
-        "files": [
-            "build/**/*",
-            "node_modules/**/*",
-            "backend/**",
-            "src/**/**"
-        ],
-        "extraResources": [
-            {
-                "from": "./resources/",
-                "to": "./"
-            }
-        ],
-        "win": {
-            "target": "nsis",
-            "icon": "resources/media/icon.ico"
-        },
-        "mac": {
-            "category": "your.app.category",
-            "icon": "resources/media/icon.ico"
-        },
-        "linux": {
-            "category": "Your app category",
-            "icon": "resources/media/icon.ico",
-            "target": {
-                "target": "appimage",
-                "arch": [
-                    "x64"
-                ]
-            }
-        }
+    "mac": {
+      "category": "your.app.category",
+      "icon": "resources/media/icon.ico"
     },
-    "dependencies": {
-        "bootstrap": "^4.5.0",
-        "electron-is-dev": "^1.2.0",
-        "nedb": "^1.8.0",
-        "react-bootstrap-icons": "^1.0.2-alpha4",
-        "react-router-dom": "^5.2.0"
-    },
-    "devDependencies": {
-        "concurrently": "^5.1.0",
-        "electron": "^9.0.2",
-        "electron-builder": "^22.7.0",
-        "electron-devtools-installer": "^3.0.0",
-        "nodemon": "^2.0.3",
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1",
-        "react-scripts": "3.4.1"
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
+    "linux": {
+      "category": "Your app category",
+      "icon": "resources/media/icon.ico",
+      "target": {
+        "target": "appimage",
+        "arch": ["x64"]
+      }
     }
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.0",
+    "electron-is-dev": "^1.2.0",
+    "electron-updater": "^4.3.1",
+    "nedb": "^1.8.0",
+    "react-bootstrap-icons": "^1.0.2-alpha4",
+    "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "electron": "^9.0.3",
+    "electron-builder": "^22.7.0",
+    "electron-devtools-installer": "^3.0.0",
+    "nodemon": "^2.0.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1"
+  },
+  "browserslist": {
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://https://github.com/mnnlthmpsn/foresightIMS.git"
+  }
 }

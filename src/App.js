@@ -15,10 +15,9 @@ import Update from './components/update'
 import Revert from './components/revert'
 
 const App = () => {
-
   return (
     <div className='container'>
-    <TitleBar />
+      <TitleBar />
       <div className='app'>
         <div className='side'>
           <Nav />

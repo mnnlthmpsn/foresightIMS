@@ -1,4 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
+const { autoUpdater } = require('electron-updater')
+
 const db = require('./db')
 
 const path = require('path')
@@ -21,14 +23,15 @@ const createWindow = () => {
     }
   })
   mainWindow.on('closed', () => (mainWindow = null))
-  mainWindow.on('ready-to-show', () => {
-    mainWindow.show()
-  })
   mainWindow.loadURL(
     isDev
       ? 'http://localhost:3000'
       : `file://${path.join(__dirname, '../build/index.html')}`
   )
+  mainWindow.on('ready-to-show', () => {
+    mainWindow.show()
+    autoUpdater.checkForUpdatesAndNotify()
+  })
 }
 
 app.on('ready', createWindow)
@@ -88,4 +91,16 @@ ipcMain.on('delete:item', (e, name) =>{
   db.remove({ name: name }, {}, function (err, res) {
     err ? console.log(err) : console.log(res)
   });
-} )
+})
+
+autoUpdater.on('update-available', () => {
+  mainWindow.webContents.send('update_available')
+})
+
+autoUpdater.on('update-downloaded', () => {
+  mainWindow.webContents.send('update_downloaded')
+})
+
+ipcMain.on('restart_app', () => {
+  autoUpdater.quitAndInstall()
+})
