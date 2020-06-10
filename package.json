@@ -2,7 +2,9 @@
   "name": "foresight",
   "version": "1.0.0",
   "homepage": "./",
-  "author": { "name": "Emmanuel Kwadwo Ntiamoah Thompson"},
+  "author": {
+    "name": "Emmanuel Kwadwo Ntiamoah Thompson"
+  },
   "description": "Simple management app for ForeSight Inc.",
   "main": "public/electron.js",
   "repository": {
@@ -14,8 +16,7 @@
     "electron:dev": "nodemon --exec \"electron . --debug\"",
     "react:dev": "react-scripts start",
     "react:build": "react-scripts build",
-    "build": "electron-builder build --win --publish never",
-    "deploy": "electron-builder build --win --publish always"
+    "deploy": "npm run react:build && electron-builder --win --publish always"
   },
   "dependencies": {
     "bootstrap": "^4.5.0",
@@ -36,7 +37,11 @@
     "react-scripts": "3.4.1"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

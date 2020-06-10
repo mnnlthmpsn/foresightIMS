@@ -60,8 +60,18 @@ const Home = () => {
                       <h6 className='mt-1'>{item.name}</h6>
                     </a>
                   </td>
-                  <td className='col-3'>{item.price}</td>
-                  <td className='col-3'>{item.quantity}</td>
+                  <td className='col-3'>
+                    {/* eslint-disable-next-line */}
+                    <a onClick={() => toSellOrUpdate(item.name)}>
+                      <h6 className='mt-1'>{item.price}</h6>
+                    </a>
+                  </td>
+                  <td className='col-3'>
+                    {/* eslint-disable-next-line */}
+                    <a onClick={() => toSellOrUpdate(item.name)}>
+                      <h6 className='mt-1'>{item.quantity}</h6>
+                    </a>
+                  </td>
                 </tr>
               ))}
             </tbody>
