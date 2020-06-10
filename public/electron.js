@@ -30,7 +30,7 @@ const createWindow = () => {
   )
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
-    autoUpdater.checkForUpdatesAndNotify()
+    isDev ? 'pass' : autoUpdater.checkForUpdatesAndNotify()
   })
 }
 
